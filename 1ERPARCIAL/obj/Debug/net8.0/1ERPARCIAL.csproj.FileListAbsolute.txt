@@ -12,3 +12,4 @@ C:\Users\lcantillo\Downloads\.net y C#\Parcial1\1ERPARCIAL\obj\Debug\net8.0\refi
 C:\Users\lcantillo\Downloads\.net y C#\Parcial1\1ERPARCIAL\obj\Debug\net8.0\1ERPARCIAL.pdb
 C:\Users\lcantillo\Downloads\.net y C#\Parcial1\1ERPARCIAL\obj\Debug\net8.0\1ERPARCIAL.genruntimeconfig.cache
 C:\Users\lcantillo\Downloads\.net y C#\Parcial1\1ERPARCIAL\obj\Debug\net8.0\ref\1ERPARCIAL.dll
+C:\Users\lcantillo\Downloads\.net y C#\Parcial1\1ERPARCIAL\obj\Debug\net8.0\1ERPARCIAL.sourcelink.json

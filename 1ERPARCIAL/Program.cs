@@ -83,6 +83,95 @@ static void ImprimirEncabezado(string titulo)
         Console.WriteLine("====================================================");
     }
 
-    
+// Inicio del programa principal con el menú y los controles de errores y el llamado de los 
+//metodos que haran los calculos de las opciones seleccionadas y que estarán despues del main
+
+static void Main()
+    {
+        bool salir = false;
+        do
+        {
+
+            try
+            {
+
+                ImprimirEncabezado("MARKET-FACT. TU SISTEMA GESTOR DE VENTAS E INVENTARIO");
+                Console.WriteLine("Ingresa la opción que desea ejecutar: ");
+                Console.WriteLine("1. Registrar nuevo producto en inventario");
+                Console.WriteLine("2. Consultar inventario completo");
+                Console.WriteLine("3. Registrar una venta");
+                Console.WriteLine("4. Ver reporte de caja y estadísticas diarias");
+                Console.WriteLine("5. Salir");
+                Console.WriteLine("====================================================");
+            
+                int opcion = LeerEntero("Seleccione una opción (1-5): ", 1, 5);
+
+            switch (opcion)
+            {
+                case 1: RegistrarProducto(); 
+                break;
+
+                case 2: //ConsultarInventario(); 
+                break;
+
+                case 3: //RegistrarVenta(); 
+                break;
+
+                case 4: //MostrarReporte(); 
+                break;
+
+                case 5: salir = true; 
+                break;
+            }
+
+        }
+
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\n[ERROR CRÍTICO] Ocurrió un problema inesperado: {ex.Message}");
+            Console.WriteLine("El sistema se recuperó. Presione ENTER para volver al menú...");
+            Console.ReadLine();
+        }
+
+        } while (!salir);
+
+        Console.WriteLine("¡Gracias por utilizar el sistema Mini-POS! Hasta pronto.");
+    }
+
+// Metodos para toda la logica del sistema de facturación y el inventario
+
+//Metodo que registra los productos
+
+static void RegistrarProducto()
+    {
+        ImprimirEncabezado("Registrar Nuevo Producto");
+        
+        Console.Write("Nombre del producto: ");
+        string nombre = Console.ReadLine()!;
+
+        // Validar duplicados ignorando mayúsculas/minúsculas
+        foreach (string n in nombresArticulo)
+        {
+            if (n.Equals(nombre, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("[ERROR] Ya existe un producto con ese nombre.");
+                Console.ReadLine();
+                return;
+            }
+        }
+
+        decimal precio = LeerDecimal("Precio unitario ($): ", 0.01m);
+        int stock = LeerEntero("Stock inicial: ", 0, 10000);
+
+        // Como son listas paralelas, agregar en orden asegura que compartan el mismo índice
+        nombresArticulo.Add(nombre);
+        preciosArticulo.Add(precio);
+        stocksArticulo.Add(stock);
+        ventasPorProducto.Add(0); // Inicia con 0 ventas
+
+        Console.WriteLine("\n[OK] Producto registrado con éxito.");
+        Console.ReadLine(); // Pausa para que el usuario lea
+    }
+
 
     }
