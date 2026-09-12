@@ -83,6 +83,15 @@ static void ImprimirEncabezado(string titulo)
         Console.WriteLine("====================================================");
     }
 
+// Metodo para indicar al usuario una instrucción luego de que un metodo de la opciones del menu
+//termine de ejecutarse
+
+static void PausarYRegresar()
+{
+    Console.WriteLine("\nPresione cualquier tecla para volver al menú...");
+    Console.ReadKey(); // El programa se congela aquí hasta que se presione una tecla
+}
+
 // Inicio del programa principal con el menú y los controles de errores y el llamado de los 
 //metodos que haran los calculos de las opciones seleccionadas y que estarán despues del main
 
@@ -111,7 +120,7 @@ static void Main()
                 case 1: RegistrarProducto(); 
                 break;
 
-                case 2: //ConsultarInventario(); 
+                case 2: ConsultarInventario(); 
                 break;
 
                 case 3: //RegistrarVenta(); 
@@ -135,7 +144,7 @@ static void Main()
 
         } while (!salir);
 
-        Console.WriteLine("¡Gracias por utilizar el sistema Mini-POS! Hasta pronto.");
+        Console.WriteLine("¡Gracias por utilizar MARKET-FACT! Hasta pronto.");
     }
 
 // Metodos para toda la logica del sistema de facturación y el inventario
@@ -170,8 +179,30 @@ static void RegistrarProducto()
         ventasPorProducto.Add(0); // Inicia con 0 ventas
 
         Console.WriteLine("\n[OK] Producto registrado con éxito.");
-        Console.ReadLine(); // Pausa para que el usuario lea
+        PausarYRegresar();
     }
 
+//Metodo para realizar la consulta del inventario
 
+static void ConsultarInventario()
+    {
+        ImprimirEncabezado("Inventario Completo");
+
+        if (nombresArticulo.Count == 0)
+        {
+            Console.WriteLine("No hay productos registrados en el inventario.");
+        }
+        else
+        {
+            for (int i = 0; i < nombresArticulo.Count; i++)
+            {
+                string alerta = stocksArticulo[i] < 5 ? " [ALERTA: ESTE ARTICULO TIENE BAJO STOCK]" : "";
+                Console.WriteLine($"{i + 1}. {nombresArticulo[i]} | Precio: {preciosArticulo[i]:C} | Stock: {stocksArticulo[i]}{alerta}");
+            }
+        }
+
+        PausarYRegresar();
+    }
+
+// 
     }
