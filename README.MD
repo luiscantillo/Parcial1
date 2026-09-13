@@ -19,12 +19,15 @@ Para ejecutar este proyecto de forma local, asegúrate de tener instalado el [SD
    ```bash
    git clone https://github.com/luiscantillo/Parcial1.git
 
-2. Navegar al directorio del proyecto:
+2. **Navegar al directorio del proyecto:**
 
+```bash
 cd Parcial1/1ERPARCIAL
 
-3. Ejecutar la aplicación. Inicia el sistema utilizando la herramienta de línea de comandos de .NET:
+3. **Ejecutar la aplicación.** 
+Inicia el sistema utilizando la herramienta de línea de comandos de .NET:
 
+```bash
 dotnet run
 
 ## Ejemplos de la Aplicación en Ejecución
@@ -33,6 +36,7 @@ A continuación, se muestran algunas de las pantallas principales con las que in
 
 ## Menú Principal
 
+```bash
 ====================================================
  MARKET-FACT. TU SISTEMA GESTOR DE VENTAS E INVENTARIO
 ====================================================
@@ -46,6 +50,7 @@ Ingresa la opción que desea ejecutar:
 
 ## Consulta de Inventario (con alerta de bajo stock)
 
+```bash
 ====================================================
  INVENTARIO COMPLETO
 ====================================================
@@ -57,6 +62,8 @@ Presione cualquier tecla para volver al menú...
 
 ## Generación de Ticket de Venta
 
+
+```bash
 ====================================================
  TICKET DE VENTA
 ====================================================
@@ -74,6 +81,8 @@ Presione cualquier tecla para volver al menú...
 
 ## Reporte de Caja
 
+
+```bash
 ====================================================
  REPORTE DE CAJA Y ESTADÍSTICAS
 ====================================================
