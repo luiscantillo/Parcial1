@@ -125,7 +125,7 @@ static void Main()
                 case 3: RegistrarVenta(); 
                 break;
 
-                case 4: //MostrarReporte(); 
+                case 4: MostrarReporte(); 
                 break;
 
                 case 5: salir = true; 
@@ -153,9 +153,18 @@ static void Main()
 static void RegistrarProducto()
     {
         ImprimirEncabezado("Registrar Nuevo Producto");
-        
-        Console.Write("Nombre del producto: ");
-        string nombre = Console.ReadLine()!;
+
+        // AÑADO UNA OPCIÓN EN LA CUAL PUEDA CANCELAR EL PROCESO Y REGRESAR AL MENÚ
+        Console.Write("Nombre del producto (o escriba '0' para regresar): ");
+        string nombre = Console.ReadLine()!.Trim();
+
+        // 2. Evaluar inmediatamente la entrada
+        if (nombre == "0")
+        {
+            Console.WriteLine("\nOperación cancelada. Regresando al menú...");
+            PausarYRegresar();
+            return; // Esto corta el método de raíz y vuelve al Main
+        }
 
         // Validar duplicados ignorando mayúsculas/minúsculas
         foreach (string n in nombresArticulo)
@@ -221,7 +230,17 @@ static void RegistrarVenta()
             Console.WriteLine($"{i + 1}. {nombresArticulo[i]} | Precio: {preciosArticulo[i]:C} | Stock: {stocksArticulo[i]}");
         }
 
-        int seleccion = LeerEntero($"\nSeleccione el número del producto (1-{nombresArticulo.Count}): ", 1, nombresArticulo.Count);
+        // --- SE AÑADIÓ LA OPCIÓN 0 AQUÍ ---
+        int seleccion = LeerEntero($"\nSeleccione el número del producto (1-{nombresArticulo.Count}) o '0' para cancelar: ", 0, nombresArticulo.Count);
+        
+        if (seleccion == 0)
+        {
+            Console.WriteLine("\nOperación cancelada. Regresando al menú principal...");
+            PausarYRegresar();
+            return;
+        }
+        // ----------------------------------
+
         int indice = seleccion - 1; // Restamos 1 porque las listas empiezan en 0
 
         if (stocksArticulo[indice] == 0)
@@ -231,7 +250,16 @@ static void RegistrarVenta()
             return;
         }
 
-        int cantidad = LeerEntero("Ingrese la cantidad a comprar: ", 1, int.MaxValue);
+        // --- SE AÑADIÓ LA OPCIÓN 0 AQUÍ ---
+        int cantidad = LeerEntero("Ingrese la cantidad a comprar (o '0' para cancelar): ", 0, int.MaxValue);
+
+        if (cantidad == 0)
+        {
+            Console.WriteLine("\nOperación cancelada. Regresando al menú principal...");
+            PausarYRegresar();
+            return;
+        }
+        // ----------------------------------
 
         // Validación de stock
         if (cantidad > stocksArticulo[indice])
@@ -299,7 +327,7 @@ static void MostrarReporte()
             Console.WriteLine($"Promedio por venta:          {promedio:C}");
             Console.WriteLine($"Producto más vendido:        {productoTop} ({maxVentas} unidades)");
         }
-        
+
         PausarYRegresar();
     }
 }
