@@ -177,7 +177,7 @@ static void RegistrarProducto()
             }
         }
 
-        decimal precio = LeerDecimal("Precio unitario ($): ", 0.01m);
+        decimal precio = LeerDecimal("Precio unitario (SIN IVA) ($): ", 0.01m);
         int stock = LeerEntero("Stock inicial: ", 0, 10000);
 
         // Como son listas paralelas, agregar en orden asegura que compartan el mismo índice
@@ -205,7 +205,7 @@ static void ConsultarInventario()
             for (int i = 0; i < nombresArticulo.Count; i++)
             {
                 string alerta = stocksArticulo[i] < 5 ? " [ALERTA: ESTE ARTICULO TIENE BAJO STOCK]" : "";
-                Console.WriteLine($"{i + 1}. {nombresArticulo[i]} | Precio: {preciosArticulo[i]:C} | Stock: {stocksArticulo[i]}{alerta}");
+                Console.WriteLine($"{i + 1}. {nombresArticulo[i]} | Precio unitario (SIN IVA): {preciosArticulo[i]:C} | Stock: {stocksArticulo[i]}{alerta}");
             }
         }
 
@@ -227,11 +227,11 @@ static void RegistrarVenta()
         // Mostrar productos y pedir selección
         for (int i = 0; i < nombresArticulo.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {nombresArticulo[i]} | Precio: {preciosArticulo[i]:C} | Stock: {stocksArticulo[i]}");
+            Console.WriteLine($"{i + 1}. {nombresArticulo[i]} | Precio unitario (SIN IVA): {preciosArticulo[i]:C} | Stock: {stocksArticulo[i]}");
         }
 
         // --- SE AÑADIÓ LA OPCIÓN 0 AQUÍ ---
-        int seleccion = LeerEntero($"\nSeleccione el número del producto (1-{nombresArticulo.Count}) o '0' para cancelar: ", 0, nombresArticulo.Count);
+        int seleccion = LeerEntero($"\nSeleccione el ID del producto (1-{nombresArticulo.Count}) o '0' para cancelar: ", 0, nombresArticulo.Count);
         
         if (seleccion == 0)
         {
@@ -264,12 +264,12 @@ static void RegistrarVenta()
         // Validación de stock
         if (cantidad > stocksArticulo[indice])
         {
-            Console.WriteLine($"[ERROR] Stock insuficiente. Solo quedan {stocksArticulo[indice]} unidades.");
+            Console.WriteLine($"Stock insuficiente. Solo quedan {stocksArticulo[indice]} unidades.");
             PausarYRegresar();
             return;
         }
 
-        Console.Write("¿Aplica descuento de cliente frecuente (10%)? (S/N): ");
+        Console.Write("¿Aplica descuento de Cliente Frecuente (10%)? (S/N): ");
         bool descuento = Console.ReadLine()!.Trim().ToUpper() == "S";
 
         // Llamada al método con parámetros out
@@ -280,8 +280,8 @@ static void RegistrarVenta()
         ImprimirEncabezado("Ticket de Venta");
         Console.WriteLine($" Producto:        {nombresArticulo[indice]} (x{cantidad})");
         Console.WriteLine($" Subtotal:        {(preciosArticulo[indice] * cantidad):C}");
-        Console.WriteLine($" Descuento (10%):-{desc:C}");
-        Console.WriteLine($" IVA (19%):       +{iva:C}");
+        Console.WriteLine($" Descuento Cliente Frecuente (10%):-{desc:C}");
+        Console.WriteLine($" Valor IVA (19%):       +{iva:C}");
         Console.WriteLine(" ---------------------------------------------------");
         Console.WriteLine($" TOTAL A PAGAR:   {total:C}");
 
