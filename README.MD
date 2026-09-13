@@ -21,74 +21,73 @@ Para ejecutar este proyecto de forma local, asegúrate de tener instalado el [SD
 
 2. **Navegar al directorio del proyecto:**
 
-```bash
-cd Parcial1/1ERPARCIAL
+   ```bash
+   cd Parcial1/1ERPARCIAL
 
-3. **Ejecutar la aplicación.** 
+
+3. **Ejecutar la aplicación.**
 Inicia el sistema utilizando la herramienta de línea de comandos de .NET:
 
-```bash
-dotnet run
+   ```bash
+   dotnet run
 
-## Ejemplos de la Aplicación en Ejecución
-
-A continuación, se muestran algunas de las pantallas principales con las que interactúa el usuario al ejecutar el programa:
+4. ** Ejemplos de la ejecución del código. A continuación, se muestran algunas de las pantallas principales con las que interactúa el usuario al ejecutar el programa:
 
 ## Menú Principal
 
-```bash
-====================================================
- MARKET-FACT. TU SISTEMA GESTOR DE VENTAS E INVENTARIO
-====================================================
-1. Registrar nuevo producto en inventario
-2. Consultar inventario completo
-3. Registrar una venta
-4. Ver reporte de caja y estadísticas diarias
-5. Salir
-====================================================
-Ingresa la opción que desea ejecutar:
+   ```bash
+   ====================================================
+   MARKET-FACT. TU SISTEMA GESTOR DE VENTAS E INVENTARIO
+   ====================================================
+   1. Registrar nuevo producto en inventario
+   2. Consultar inventario completo
+   3. Registrar una venta
+   4. Ver reporte de caja y estadísticas diarias
+   5. Salir
+   ====================================================
+   Ingresa la opción que desea ejecutar:
 
 ## Consulta de Inventario (con alerta de bajo stock)
 
-```bash
-====================================================
- INVENTARIO COMPLETO
-====================================================
-1. Teclado Mecánico | Precio unitario (SIN IVA): $ 150.000,00 | Stock: 12
-2. Mouse Inalámbrico | Precio unitario (SIN IVA): $ 45.000,00 | Stock: 3 [ALERTA: ESTE ARTICULO TIENE BAJO STOCK]
+   ```bash
+   ====================================================
+   INVENTARIO COMPLETO
+   ====================================================
+   1. Teclado Mecánico | Precio unitario (SIN IVA): $ 150.000,00 | Stock: 12
+   2. Mouse Inalámbrico | Precio unitario (SIN IVA): $ 45.000,00 | Stock: 3 [ALERTA: ESTE ARTICULO TIENE BAJO STOCK]
 
-Presione cualquier tecla para volver al menú...
+   Presione cualquier tecla para volver al menú...
 
 
 ## Generación de Ticket de Venta
 
 
-```bash
-====================================================
- TICKET DE VENTA
-====================================================
- Producto:        Teclado Mecánico (x2)
- Subtotal:        $ 300.000,00
- Descuento Cliente Frecuente (10%):-$ 30.000,00
- Valor IVA (19%):       +$ 51.300,00
- ---------------------------------------------------
- TOTAL A PAGAR:   $ 321.300,00
+   ```bash
+   ====================================================
+   TICKET DE VENTA
+   ====================================================
+   Producto:        Teclado Mecánico (x2)
+   Subtotal:        $ 300.000,00
+   Descuento Cliente Frecuente (10%):-$ 30.000,00
+   Valor IVA (19%):       +$ 51.300,00
+   ---------------------------------------------------
+   TOTAL A PAGAR:   $ 321.300,00
 
-Venta efectuada exitosamente. Stock actualizado: 10 unidades.
+   Venta efectuada exitosamente. Stock actualizado: 10 unidades.
 
-Presione cualquier tecla para volver al menú...
+   Presione cualquier tecla para volver al menú...
 
 
 ## Reporte de Caja
 
 
-```bash
-====================================================
- REPORTE DE CAJA Y ESTADÍSTICAS
-====================================================
-Total de ventas realizadas:  1
-Total ingresado a caja:      $ 321.300,00
-Promedio por venta:          $ 321.300,00
-Producto más vendido:        Teclado Mecánico (2 unidades)
+   ```bash
+   ====================================================
+   REPORTE DE CAJA Y ESTADÍSTICAS
+   ====================================================
+   Total de ventas realizadas:  1
+   Total ingresado a caja:      $ 321.300,00
+   Promedio por venta:          $ 321.300,00
+   Producto más vendido:        Teclado Mecánico (2 unidades)
 
-Presione cualquier tecla para volver al menú...
+   Presione cualquier tecla para volver al menú...
