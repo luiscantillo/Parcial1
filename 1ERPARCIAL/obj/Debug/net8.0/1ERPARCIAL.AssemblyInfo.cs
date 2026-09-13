@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("1ERPARCIAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5433ccbab140469aa9cc448074be328acef41c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd4b72aa8a51e7f3928d68fa1268b01e51529be3")]
 [assembly: System.Reflection.AssemblyProductAttribute("1ERPARCIAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("1ERPARCIAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

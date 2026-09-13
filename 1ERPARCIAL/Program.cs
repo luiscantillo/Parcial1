@@ -51,7 +51,7 @@ static decimal LeerDecimal(string mensaje, decimal min)
             {
                 return numero;
             }
-            Console.WriteLine($"o sentimos, esta es una opción invalida. Ingrese un valor mayor o igual a {min}.\n");
+            Console.WriteLine($"Lo sentimos, esta es una opción invalida. Ingrese un valor mayor o igual a {min}.\n");
         }
     }
 
@@ -105,7 +105,6 @@ static void Main()
             {
 
                 ImprimirEncabezado("MARKET-FACT. TU SISTEMA GESTOR DE VENTAS E INVENTARIO");
-                Console.WriteLine("Ingresa la opción que desea ejecutar: ");
                 Console.WriteLine("1. Registrar nuevo producto en inventario");
                 Console.WriteLine("2. Consultar inventario completo");
                 Console.WriteLine("3. Registrar una venta");
@@ -113,7 +112,7 @@ static void Main()
                 Console.WriteLine("5. Salir");
                 Console.WriteLine("====================================================");
             
-                int opcion = LeerEntero("Seleccione una opción (1-5): ", 1, 5);
+                int opcion = LeerEntero("Ingresa la opción que desea ejecutar: ", 1, 5);
 
             switch (opcion)
             {
@@ -123,7 +122,7 @@ static void Main()
                 case 2: ConsultarInventario(); 
                 break;
 
-                case 3: //RegistrarVenta(); 
+                case 3: RegistrarVenta(); 
                 break;
 
                 case 4: //MostrarReporte(); 
@@ -163,7 +162,7 @@ static void RegistrarProducto()
         {
             if (n.Equals(nombre, StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("[ERROR] Ya existe un producto con ese nombre.");
+                Console.WriteLine("Ya existe un producto con ese nombre. Intenta nuevamente");
                 Console.ReadLine();
                 return;
             }
@@ -178,7 +177,7 @@ static void RegistrarProducto()
         stocksArticulo.Add(stock);
         ventasPorProducto.Add(0); // Inicia con 0 ventas
 
-        Console.WriteLine("\n[OK] Producto registrado con éxito.");
+        Console.WriteLine("\nProducto registrado con éxito.");
         PausarYRegresar();
     }
 
@@ -204,5 +203,70 @@ static void ConsultarInventario()
         PausarYRegresar();
     }
 
-// 
+// Metodo para registra una venta de un articulo.
+
+static void RegistrarVenta()
+    {
+        ImprimirEncabezado("Registrar Venta");
+        if (nombresArticulo.Count == 0)
+        {
+            Console.WriteLine("No hay productos actualmente en el inventario para vender.");
+            PausarYRegresar();
+            return;
+        }
+
+        // Mostrar productos y pedir selección
+        for (int i = 0; i < nombresArticulo.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {nombresArticulo[i]} | Precio: {preciosArticulo[i]:C} | Stock: {stocksArticulo[i]}");
+        }
+
+        int seleccion = LeerEntero($"\nSeleccione el número del producto (1-{nombresArticulo.Count}): ", 1, nombresArticulo.Count);
+        int indice = seleccion - 1; // Restamos 1 porque las listas empiezan en 0
+
+        if (stocksArticulo[indice] == 0)
+        {
+            Console.WriteLine("Lo sentimos, este producto se encuentra agotado.");
+            PausarYRegresar();
+            return;
+        }
+
+        int cantidad = LeerEntero("Ingrese la cantidad a comprar: ", 1, int.MaxValue);
+
+        // Validación de stock
+        if (cantidad > stocksArticulo[indice])
+        {
+            Console.WriteLine($"[ERROR] Stock insuficiente. Solo quedan {stocksArticulo[indice]} unidades.");
+            PausarYRegresar();
+            return;
+        }
+
+        Console.Write("¿Aplica descuento de cliente frecuente (10%)? (S/N): ");
+        bool descuento = Console.ReadLine()!.Trim().ToUpper() == "S";
+
+        // Llamada al método con parámetros out
+        decimal iva, desc;
+        decimal total = CalcularFactura(preciosArticulo[indice], cantidad, descuento, out iva, out desc);
+
+        // Imprimir Ticket
+        ImprimirEncabezado("Ticket de Venta");
+        Console.WriteLine($" Producto:        {nombresArticulo[indice]} (x{cantidad})");
+        Console.WriteLine($" Subtotal:        {(preciosArticulo[indice] * cantidad):C}");
+        Console.WriteLine($" Descuento (10%):-{desc:C}");
+        Console.WriteLine($" IVA (19%):       +{iva:C}");
+        Console.WriteLine(" ---------------------------------------------------");
+        Console.WriteLine($" TOTAL A PAGAR:   {total:C}");
+
+        // Actualizar datos
+        stocksArticulo[indice] -= cantidad;
+        ventasPorProducto[indice] += cantidad;
+        totalCantVentas++;
+        totalIgresosCaja += total;
+
+        Console.WriteLine($"\nVenta efectuada exitosamente. Stock actualizado: {stocksArticulo[indice]} unidades.");
+        PausarYRegresar();
     }
+
+
+
+}
