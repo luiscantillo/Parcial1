@@ -268,5 +268,38 @@ static void RegistrarVenta()
     }
 
 
+//Metodo que imprime el reporte de ventas general.
 
+static void MostrarReporte()
+    {
+        ImprimirEncabezado("Reporte de Caja y Estadísticas");
+
+        if (totalCantVentas == 0)
+        {
+            Console.WriteLine("No se han realizado ventas hoy.");
+        }
+        else
+        {
+            decimal promedio = totalIgresosCaja / totalCantVentas;
+            
+            // Lógica para encontrar el producto más vendido
+            int maxVentas = 0;
+            string productoTop = "";
+            for (int i = 0; i < nombresArticulo.Count; i++)
+            {
+                if (ventasPorProducto[i] > maxVentas)
+                {
+                    maxVentas = ventasPorProducto[i];
+                    productoTop = nombresArticulo[i];
+                }
+            }
+
+            Console.WriteLine($"Total de ventas realizadas:  {totalCantVentas}");
+            Console.WriteLine($"Total ingresado a caja:      {totalIgresosCaja:C}");
+            Console.WriteLine($"Promedio por venta:          {promedio:C}");
+            Console.WriteLine($"Producto más vendido:        {productoTop} ({maxVentas} unidades)");
+        }
+        
+        PausarYRegresar();
+    }
 }
