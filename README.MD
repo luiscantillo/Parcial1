@@ -17,7 +17,7 @@ Para ejecutar este proyecto de forma local, asegúrate de tener instalado el [SD
 1. **Clonar el repositorio:**
    Abre tu terminal o línea de comandos y ejecuta:
    ```bash
-   git clone [https://github.com/luiscantillo/Parcial1.git](https://github.com/luiscantillo/Parcial1.git)
+   git clone https://github.com/luiscantillo/Parcial1.git
    ```
 
 2. **Navegar al directorio del proyecto:**
